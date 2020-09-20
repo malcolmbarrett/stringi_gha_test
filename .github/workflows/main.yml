@@ -33,14 +33,12 @@ jobs:
       - name: Install Package Dependencies
         run: |-
           options(repos = 'https://packagemanager.rstudio.com/all/329')
-          install.packages(c('remotes', 'pkgbuild'))
+          install.packages('remotes')
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
 
-      - name: Build Package
-        run: |-
-          pkgbuild::build()
-        shell: Rscript {0}
+      - name: Install package
+        run: R CMD INSTALL .
 
       - name: 'Try to use stringr'
         run: |-

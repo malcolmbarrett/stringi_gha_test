@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: macOS-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
       - name: Query dependencies
         run: |
           options(repos = 'https://packagemanager.rstudio.com/all/329')
@@ -23,14 +26,14 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ hashFiles('.github/R-version') }}-1-
-      - name: Checkout Repository
-        uses: actions/checkout@master
+
       - name: Install Package Dependencies
         run: |-
           options(repos = 'https://packagemanager.rstudio.com/all/329')
           install.packages('remotes')
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
+
       - name: 'Try to use stringr'
         run: |-
           library(stringr); str_c('Letter: ', letters)

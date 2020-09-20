@@ -1,0 +1,21 @@
+name: 'Test stringi'
+'on':
+  push:
+    branch: master
+  schedule:
+    - cron:  '0 10 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+      - name: Install Package Dependencies
+        run: |-
+          Rscript -e "install.packages('remotes', repos = 'https://demo.rstudiopm.com/all/__linux__/bionic/latest')"
+          Rscript -e "remotes::install_deps(dependencies = TRUE, repos = 'https://demo.rstudiopm.com/all/__linux__/bionic/latest')"
+      - name: 'Deploy script: `deploy_dashboard.R`'
+        run: |-
+          Rscript -e "library(stringer); str_c("Letter: ", letters)"
+    container: rocker/verse:latest

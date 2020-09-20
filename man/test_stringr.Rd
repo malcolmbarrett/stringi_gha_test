@@ -4,7 +4,10 @@
 \alias{test_stringr}
 \title{Test stringr}
 \usage{
-test_stringr()
+test_stringr(msg)
+}
+\arguments{
+\item{msg}{a message}
 }
 \description{
 Test stringr

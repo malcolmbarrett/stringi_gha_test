@@ -39,5 +39,6 @@ jobs:
 
       - name: 'Try to use stringr'
         run: |-
-          library(stringr); str_c('Letters again: ', letters)
+          library(stringi.gha.test)
+          test_stringr()
         shell: Rscript {0}

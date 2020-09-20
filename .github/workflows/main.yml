@@ -14,7 +14,7 @@ jobs:
       - name: Install Package Dependencies
         run: |-
           Rscript -e "install.packages('remotes')"
-          Rscript -e "install.packages('stringi'')"
+          Rscript -e "install.packages('stringi')"
           Rscript -e "remotes::install_deps(dependencies = TRUE)"
       - name: 'Try to use stringr'
         run: |-

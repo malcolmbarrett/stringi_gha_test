@@ -2,8 +2,6 @@ name: 'Test stringi'
 'on':
   push:
     branch: master
-  schedule:
-    - cron:  '* * * * *'
 
 jobs:
   build:
